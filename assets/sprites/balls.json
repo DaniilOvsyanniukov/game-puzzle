@@ -1,0 +1,52 @@
+{"frames": [
+
+{
+	"filename": "sphere1",
+	"frame": {"x":1,"y":1,"w":51,"h":51},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":51},
+	"sourceSize": {"w":51,"h":51}
+},
+{
+	"filename": "sphere2",
+	"frame": {"x":53,"y":1,"w":51,"h":51},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":51},
+	"sourceSize": {"w":51,"h":51}
+},
+{
+	"filename": "sphere3",
+	"frame": {"x":105,"y":1,"w":51,"h":51},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":51},
+	"sourceSize": {"w":51,"h":51}
+},
+{
+	"filename": "sphere4",
+	"frame": {"x":157,"y":1,"w":51,"h":51},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":51},
+	"sourceSize": {"w":51,"h":51}
+},
+{
+	"filename": "sphere5",
+	"frame": {"x":209,"y":1,"w":51,"h":51},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":51,"h":51},
+	"sourceSize": {"w":51,"h":51}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "balls.png",
+	"format": "RGBA8888",
+	"size": {"w":261,"h":53},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ebd0a949a9e7d3d47f1b62e58931c9f9:4151b93d4916fb0e31f7eef150de7aca:af019c9df43c0315bbf2d16d758faea9$"
+}
+}

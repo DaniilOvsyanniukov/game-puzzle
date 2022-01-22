@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Memory Game</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      canvas {
+        width: 100%;
+      }
+      @font-face {
+        font-family: "CurseCasual";
+        src: url("assets/fonts/CurseCasual.ttf");
+      }
+      .fontPreload {
+        font-family: "CurseCasual";
+        position: absolute;
+        left: -100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fontPreload"></div>
+    <script src="./assets/scripts/libs/phaser.js"></script>
+    <script src="./assets/scripts/scenes/BootScene.js"></script>
+    <script src="./assets/scripts/scenes/PreloadScene.js"></script>
+    <script src="./assets/scripts/scenes/StartScene.js"></script>
+    <script src="./assets/scripts/scenes/GameScene.js"></script>
+    <script src="./assets/scripts/prefabs/Ball.js"></script>
+    <script src="./assets/scripts/main.js"></script>
+  </body>
+</html>
