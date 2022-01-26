@@ -5,7 +5,7 @@ class GameScene extends Phaser.Scene{
     }
     create() {
         this.choisenBalls = [];
-        this.finishDelete = false;
+        this.ballsCount = 0;
         this.onDraged = false;
         this.createBackgtound();
         this.createBalls()
@@ -37,7 +37,8 @@ class GameScene extends Phaser.Scene{
                         return
                     }
                     counter = counter + 57
-                } while (upperBall.deletedBall === true || upperBall === null);
+                } while (upperBall.deletedBall === true);
+
                 if (upperBall.deletedBall === false) {
                     let downBall =this.balls.find((findBall) => {
                             if (upperBall.position.x === findBall.position.x && upperBall.position.y + 57 === findBall.position.y) {
@@ -69,7 +70,6 @@ class GameScene extends Phaser.Scene{
             y: -51,
             delay: ball.position.delay
         })
-        
         this.balls[ballIndex].move(ball.position)
         this.input.setDraggable(this.balls[ballIndex])
         return newBall
@@ -85,7 +85,15 @@ class GameScene extends Phaser.Scene{
         this.initBallsPositions();
         this.initBalls()
         this.showBalls()
+        this.createText()
         
+    }
+
+    createText() {
+        this.ScoreText = this.add.text(config.width / 1.3 , 100, 'Score:', {
+            font: '40px CurseCasual',
+            fill: '#ffffff'
+        }).setOrigin(0.5)
     }
 
     createBalls() {
@@ -118,11 +126,11 @@ class GameScene extends Phaser.Scene{
     }
 
     dragged(pointer, ball) {
-        console.log('dragstart')
         let frameName = ball.frame.name;
         let { x, y } = ball.position;
         this.onDraged = true
         if (this.choisenBalls.length === 0) {
+            ball.choisenBall();
             this.choisenBalls.push({ position: ball.position, frame: { name: frameName }});
             return
         }
@@ -156,10 +164,26 @@ class GameScene extends Phaser.Scene{
         if (this.onDraged === true) {
         let frameName = ball[0].frame.name;
         let { x, y } = ball[0].position;
-        let findballs = this.choisenBalls.find((ballclick) => ballclick.x === x && ballclick.y === y);
+            let findballs = this.choisenBalls.find((findBall) => {
+            if(x === findBall.position.x && y === findBall.position.y){
+                return true
+                }
+                return false
+            });
             if (this.choisenBalls[0].frame.name === frameName && this.isBallBehind(this.choisenBalls[this.choisenBalls.length - 1].position, ball[0].position)) {
                 if (findballs === undefined) {
+                    ball[0].choisenBall();
                     this.choisenBalls.push({ position: ball[0].position, frame: { name: frameName } })
+                }
+                else {
+                    let deletedBallFromChoise = this.choisenBalls.pop();
+                    let deletedBall = this.balls.find((findBall) => {
+                        if(deletedBallFromChoise.position === findBall.position){
+                        return true
+                        }
+                        return false
+                    });
+                    deletedBall.stopChoise()
                 }
             }
             return
@@ -169,7 +193,6 @@ class GameScene extends Phaser.Scene{
 
     deleteBalls() {
         let OldBalls = [...this.balls];
-        console.log(this.choisenBalls)
         this.choisenBalls.forEach((choisenBall) => {
             let findBall = OldBalls.find((ball, ballIndex, array) => {
                 if (ball.position.x === choisenBall.position.x &&
@@ -182,9 +205,10 @@ class GameScene extends Phaser.Scene{
             
             findBall.setAlive(false)
         })
+        this.ballsCount = this.ballsCount + this.choisenBalls.length
+        this.ScoreText.setText('Score: ' + this.ballsCount)
         this.choisenBalls = [];
         this.onDraged = false;
-        console.log('dragEnd')
     }
 
     initBallsPositions() {

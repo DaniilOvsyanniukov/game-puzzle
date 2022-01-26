@@ -17,9 +17,29 @@ class Ball extends Phaser.GameObjects.Sprite{
         this.position = position;
         this.setPosition(-this.width, -this.height)
     }
-    // console(x, y) {
-    //     console.log(x,y)
-    // }
+
+    choisenBall() {
+            this.scene.tweens.add({
+            targets: this,
+            scaleX: 1.2,
+            scaleY: 1.2,
+            ease: 'Sine.easeInOut',
+            duration: 400,
+            delay: 50,
+            repeat: -1,
+            yoyo: true
+             });
+    }
+
+    stopChoise() {
+        this.scene.tweens._active.pop()
+        // this.scene.tweens.add({
+        //     targets: this,
+        //     scaleX: 1,
+        //     scaleY: 1,
+        //     ease: '',
+        //      });
+    }
     
     move(params) {
         this.scene.tweens.add({
