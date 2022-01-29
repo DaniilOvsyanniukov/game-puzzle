@@ -5,19 +5,21 @@ class Ball extends Phaser.GameObjects.Sprite{
         this.scene.add.existing(this);
         this.setInteractive();
         this.init()
-        // this.console(x,y)
     }
 
+    // Надає позиціі кулькам які падають з верху у процессі гри
     initFromUp(positionTo, positionFrom) {
         this.position = positionTo
         this.setPosition(positionFrom.x, positionFrom.y)
     }
 
+    // Надає похиції кульки при ініціації
     init(position) {
         this.position = position;
         this.setPosition(-this.width, -this.height)
     }
 
+    // Надає анімаціі кулькам які попадають у перелік на видалення
     choisenBall() {
             this.scene.tweens.add({
             targets: this,
@@ -31,16 +33,12 @@ class Ball extends Phaser.GameObjects.Sprite{
              });
     }
 
+    //Убирає анімаціі кулькам які попадають у перелік на видалення
     stopChoise() {
         this.scene.tweens._active.pop()
-        // this.scene.tweens.add({
-        //     targets: this,
-        //     scaleX: 1,
-        //     scaleY: 1,
-        //     ease: '',
-        //      });
     }
-    
+
+    //Рухає кульки в залежності від координат Params
     move(params) {
         this.scene.tweens.add({
             targets: this,
@@ -56,7 +54,8 @@ class Ball extends Phaser.GameObjects.Sprite{
             }
         })
     }
-       
+
+    //Видаляє кульки з рендерінгу
     setAlive(status) {
         this.setVisible(status);
         this.setActive(status);
